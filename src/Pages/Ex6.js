@@ -4,26 +4,10 @@ import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 import {atomDark} from 'react-syntax-highlighter/dist/esm/styles/prism'
 import SubPageButt from './SubPageButt'
 import axios from 'axios'
+import { ex6t } from './CodeBlocks'
 
 export default function Ex6() {
-    const codeString = `
-    async function getBookComments(index) {
-        try {
-            const response = await axios.get(
-        \`https://jsonplaceholder.typicode.com/comments?postId=\${index}\`
-            )
-            return response.data;
-        } catch (error) {
-            throw new Error('Error');
-        }
-    }
-    
-    getBookComments(2)
-        .then(comments => comments.forEach(comment => {
-            console.log(comment);
-        }))
-        .catch(error => console.log(error))
-`;
+    const codeString = ex6t
 
 async function getBookComments(index) {
     try {

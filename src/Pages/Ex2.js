@@ -3,27 +3,9 @@ import {useState, useRef} from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 import {atomDark} from 'react-syntax-highlighter/dist/esm/styles/prism';
 import SubPageButt from './SubPageButt';
+import { ex2t } from './CodeBlocks';
 
 export default function Ex2() {
-    const codeString = `
-    async function delayedSum(a, b, delay) {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    const sum = a + b;
-                    resolve(sum);
-                }, delay)
-            })
-        }
-        
-        delayedSum(delay, delay, delay)
-            .then(result => {
-                console.log(result)
-            })
-            .catch(error => {
-                console.error("Error", error)
-            })
-            //> для ввода delay
-`;
 
     const [inputValue, setInputValue] = useState('');
     const [inputSave, setInputSave] = useState('');
@@ -74,7 +56,7 @@ const handlerKeyDown = (event) => {
                         language="javascript"
                         style={atomDark}
                         showLineNumbers="showLineNumbers">
-                        {codeString}
+                        {ex2t}
                     </SyntaxHighlighter>
                 </div>
                 <div className='Results'>

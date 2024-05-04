@@ -4,24 +4,10 @@ import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 import {atomDark} from 'react-syntax-highlighter/dist/esm/styles/prism'
 import SubPageButt from './SubPageButt'
 import axios from 'axios'
+import { ex7t } from './CodeBlocks'
 
 export default function Ex7() {
-    const codeString = `
-    async function getUsers(index) {
-        try {
-            const users = await axios.get(
-                \`https://jsonplaceholder.typicode.com/users\`)
-            return users
-                .data
-                .slice(0, index);
-        } catch (error) {
-            throw new Error("Error");
-        }
-    }
-    getUsers(index)
-    .then(users => console.log(users))
-    .catch(error => console.log(error))
-`;
+    const codeString = ex7t;
 
 async function getUsers(index) {
     try {

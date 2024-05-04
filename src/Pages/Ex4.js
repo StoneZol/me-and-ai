@@ -4,23 +4,10 @@ import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 import {atomDark} from 'react-syntax-highlighter/dist/esm/styles/prism'
 import SubPageButt from './SubPageButt'
 import axios from 'axios'
+import { ex4t } from './CodeBlocks'
 
 export default function Ex4() {
-    const codeString = `
-    async function getBookID() {
-        try {
-            const response = await axios.get(
-            \`https://jsonplaceholder.typicode.com/posts/\`)
-            return response.data
-        } catch (error) {
-            throw new Error('Error');
-        }
-    }
-    
-    getBookID()
-        .then(books => console.log(books))
-        .catch(error => console.log(error))
-`;
+
 
     async function getBookID() {
         try {
@@ -68,7 +55,7 @@ export default function Ex4() {
                         language="javascript"
                         style={atomDark}
                         showLineNumbers="showLineNumbers">
-                        {codeString}
+                        {ex4t}
                     </SyntaxHighlighter>
                 </div>
                 <div className='Results'>

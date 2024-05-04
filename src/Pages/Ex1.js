@@ -3,17 +3,9 @@ import {useState, useRef} from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 import {atomDark} from 'react-syntax-highlighter/dist/esm/styles/prism';
 import SubPageButt from './SubPageButt';
+import { ex1t } from './CodeBlocks';
 
 export default function Ex1() {
-    const codeString = `
-  function HW(t){
-      return setTimeout(function(){
-              console.log("Hello world " , t)
-          }, t)
-  }
-
-  HW(t);
-`;
 
     const [inputValue, setInputValue] = useState('');
     const [inputSave, setInputSave] = useState('');
@@ -50,7 +42,7 @@ handlerClick();
                         language="javascript"
                         style={atomDark}
                         showLineNumbers="showLineNumbers">
-                        {codeString}
+                        {ex1t}
                     </SyntaxHighlighter>
                 </div>
                 <div className='Results'>
