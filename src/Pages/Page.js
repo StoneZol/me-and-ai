@@ -9,6 +9,7 @@ import Ex3 from './Ex3';
 import Ex4 from './Ex4';
 import Ex5 from './Ex5';
 import Ex6 from './Ex6';
+import Ex7 from './Ex7';
 
 export default class Page extends React.Component {
   constructor(props){
@@ -29,6 +30,7 @@ export default class Page extends React.Component {
           <Route path='/Sub/4'element = {<Ex4 />}></Route>
           <Route path='/Sub/5'element = {<Ex5 />}></Route>
           <Route path='/Sub/6'element = {<Ex6 />}></Route>
+          <Route path='/Sub/7'element = {<Ex7 />}></Route>
         </Routes>
       </div>
     );

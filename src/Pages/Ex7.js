@@ -5,42 +5,39 @@ import {atomDark} from 'react-syntax-highlighter/dist/esm/styles/prism'
 import SubPageButt from './SubPageButt'
 import axios from 'axios'
 
-export default function Ex6() {
+export default function Ex7() {
     const codeString = `
-    async function getBookComments(index) {
+    async function getUsers(index) {
         try {
-            const response = await axios.get(
-        \`https://jsonplaceholder.typicode.com/comments?postId=\${index}\`
-            )
-            return response.data;
+            const users = await axios.get(
+                \`https://jsonplaceholder.typicode.com/users\`)
+            return users
+                .data
+                .slice(0, index);
         } catch (error) {
-            throw new Error('Error');
+            throw new Error("Error");
         }
     }
-    
-    getBookComments(2)
-        .then(comments => comments.forEach(comment => {
-            console.log(comment);
-        }))
-        .catch(error => console.log(error))
+    getUsers(index)
+    .then(users => console.log(users))
+    .catch(error => console.log(error))
 `;
 
-async function getBookComments(index) {
+async function getUsers(index) {
     try {
-        const response = await axios.get(
-            `https://jsonplaceholder.typicode.com/comments?postId=${index}`
-        )
-        return response.data;
+        const users = await axios.get(`https://jsonplaceholder.typicode.com/users`)
+        return users
+            .data
+            .slice(0, index);
     } catch (error) {
-        throw new Error('Error');
+        throw new Error("Error");
     }
 }
-
 
     const [inputValue, setInputValue] = useState('')
     const [inputSave, setInputSave] = useState([])
 
-    const numb = parseInt(inputValue) - 1;
+    const numb = parseInt(inputValue);
 
     const handleChange = (event) => {
         setInputValue(event.target.value)
@@ -48,8 +45,11 @@ async function getBookComments(index) {
 
     const handlerClick = () => {
         setInputSave([])
-        getBookComments(numb)
-            .then(bookObj => setInputSave(bookObj))
+        getUsers(numb)
+            .then(users => {
+                setInputSave(users)
+                console.log(users)
+            })
             .catch(error => console.log(error))
         }
 
@@ -81,11 +81,11 @@ async function getBookComments(index) {
                     </div>
                 </div>
                 <SubPageButt/>
-                {inputSave.map((comment, index) => (
+                {inputSave.map((user, index) => (
                 <div key={index}>
-                    <p>Name: {comment.name}</p>
-                    <p>Email: {comment.email}</p>
-                    <p>Body: {comment.body}</p>
+                    <p>Name: {user.name}</p>
+                    <p>Email: {user.email}</p>
+                    <p>UserName: {user.username}</p>
                 </div>
             ))}
             </div>
