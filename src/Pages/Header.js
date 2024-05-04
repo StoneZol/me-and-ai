@@ -7,10 +7,10 @@ export default function Header(){
     return (
         <div className='Header'>
             <div className='HeaderTextBox'>
-                <Link to = "/">Me And AI</Link>
+                <Link to = "/">&gt;Me And AI</Link>
             </div>
             <div className='Console'>
-            <div className='In'>></div><ConsoleButt/>
+            <div className='In'>&gt;</div><ConsoleButt/>
             </div>
         </div>
     );

@@ -30,9 +30,7 @@ export default function Ex1() {
 
     const handlerKeyDown = (event) => {
         if (event.key === 'Enter') {
-            setInputSave('')
-            HW(inputValue)
-            console.log("Ok", inputValue)
+handlerClick();
         } else 
             console.log('Error')
     }
@@ -56,11 +54,11 @@ export default function Ex1() {
                     </SyntaxHighlighter>
                 </div>
                 <div className='Results'>
-                    <div className='In'>></div>
-                    <input type='number' onChange={handleChange} onKeyDown={handlerKeyDown}></input>
+                    <div className='In'>&gt;</div>
+                    <input type='number' onChange={handleChange} onKeyDown={handlerKeyDown}placeholder='t'></input>
                     <div className='ButtonToCase'>
                         <div className='ButtonToCaseBox'>
-                            <a onClick={handlerClick}>>Выполнить</a>
+                            <a onClick={handlerClick}>&gt;Выполнить</a>
                         </div>
                     </div>
                     <p>
