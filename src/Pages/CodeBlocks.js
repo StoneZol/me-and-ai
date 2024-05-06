@@ -110,3 +110,101 @@ export const ex7t = `
     .then(users => console.log(users))
     .catch(error => console.log(error))
 `;
+
+export const ex8t = `
+async function createUser(userData) {
+        try {
+            const response = await axios.post(
+                \`https://jsonplaceholder.typicode.com/users/\`,
+                userData
+            );
+            return response.data;
+        } catch (error) {
+            throw new Error("Error create user")
+        }
+    }
+`
+
+export const ex9t =`
+async function updateUser(userId, updatedUser) {
+    try {
+        const response = await axios.put(
+            \`https://jsonplaceholder.typicode.com/users/\${userId}\`, updatedUser);
+        return response.data;
+    } catch (error) {
+        throw new Error("Error updating user")
+    }
+}
+const userId = 3
+const updatedUser = {
+    name: 'Makka',
+    userName: 'Makka666',
+    email: 'Makaka666@mail.ru'
+};
+updateUser(userId, updatedUser)
+    .then(updatedUser => {
+        console.log('User Update', updatedUser)
+    })
+    .catch(error => {
+        console.error('Error', error.message)
+    })
+`
+
+export const ex10t = `
+async function deleteUser(userId) {
+    try {
+        const response = await axios.delete(
+            \`https://jsonplaceholder.typicode.com/users/\${userId}\`);
+        return response.data;
+    } catch (error) {
+        throw new Error("Error deleting user")
+    }
+}
+deleteUser(3)
+    .then(updatedUser => {
+        console.log('User delete', updatedUser)
+    })
+    .catch(error => {
+        console.error('Error deleting user:', error.message)
+    })
+`
+
+export const ex11t = `
+async function patchUser (userId, patchedData){
+    try{
+        const response = await axios.patch(
+            \`https://jsonplaceholder.typicode.com/users/\${userId}\`, patchedData)
+        return response.data
+    } catch (error) {
+        throw new Error("Error patching user")
+    }
+}
+ const userPatchedData = {
+    name: "lol",
+    userName: "obama"
+ }
+
+ patchUser(4, userPatchedData)
+ .then(patchedUser => { 
+    console.log('User patched', patchedUser)}
+    
+    ).catch(error => {
+        console.error('Error patching user:', error.message)
+    })
+`
+
+export const ext12t = `
+async function getToDos(userId, index){
+    try{
+        const response = await axios.get(
+            \`https://jsonplaceholder.typicode.com/todos?userId=\${userId}\`)
+        return response.data.slice(0, index)
+    } catch (error) {
+        throw new Error('Error')
+    }
+}
+
+getToDos(3, 10)
+    .then(todos => console.log(todos))
+    .catch(error => console.log('Error get todos:', error.messadge))
+`

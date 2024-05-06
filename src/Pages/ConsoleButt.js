@@ -5,7 +5,7 @@ const ConsoleButt = () => {
   const [inputValue, setInputValue] = useState('');
   const [commands, setCommands] = useState({
     '/': '/',
-    '/Sub': '/Sub',
+    '/..': '/Sub',
     '/1': '/Sub/1',
     '/2': '/Sub/2',
     '/3': '/Sub/3',
@@ -16,6 +16,8 @@ const ConsoleButt = () => {
     '/8': '/Sub/8',
     '/9': '/Sub/9',
     '/10': '/Sub/10',
+    '/11': '/Sub/11',
+    '/12': '/Sub/12',
   });
 
   const handleChange = (event) => {
