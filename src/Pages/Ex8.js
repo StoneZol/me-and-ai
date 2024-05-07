@@ -4,23 +4,40 @@ import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 import {atomDark} from 'react-syntax-highlighter/dist/esm/styles/prism'
 import SubPageButt from './SubPageButt'
 import axios from 'axios'
-import { ex5t } from './CodeBlocks'
+import { ex8t } from './CodeBlocks'
 
-export default function Ex5() {
+export default function Ex8() {
 
-    async function getBookObj(index) {
+    async function createUser(userData) {
         try {
-            const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/`)
-            return response.data[index];
+            const response = await axios.post(
+                `https://jsonplaceholder.typicode.com/users/`,
+                userData
+            );
+            return response.data;
         } catch (error) {
-            throw new Error('Error');
+            throw new Error("Error create user")
         }
     }
+    const newUser = {
+        name: 'Makka',
+        userName: 'Makka666',
+        email: 'Makaka666@mail.ru'
+    };
+    createUser(newUser)
+        .then(createdUser => {
+            console.log('User created!', createdUser)
+        })
+        .catch(error => {
+            console.error('Error', error.message)
+        })
+
+
 
     const [inputValue, setInputValue] = useState('')
     const [inputSave, setInputSave] = useState()
 
-    const numb = parseInt(inputValue) - 1;
+    const numb = parseInt(inputValue);
 
     const handleChange = (event) => {
         setInputValue(event.target.value)
@@ -28,8 +45,11 @@ export default function Ex5() {
 
     const handlerClick = () => {
         setInputSave('')
-        getBookObj(numb)
-            .then(bookObj => setInputSave(bookObj))
+        createUser(newUser)
+            .then(cratedUser => {
+                setInputSave(cratedUser)
+                console.log(createUser)
+            })
             .catch(error => console.log(error))
         }
 
@@ -48,12 +68,11 @@ export default function Ex5() {
                         language="javascript"
                         style={atomDark}
                         showLineNumbers="showLineNumbers">
-                        {ex5t}
+                        {ex8t}
                     </SyntaxHighlighter>
                 </div>
                 <div className='Results'>
                     <div className='In'>&gt;</div>
-                    <input type='number' onChange={handleChange} onKeyDown={handlerKeyDown} placeholder='index'></input>
                     <div className='ButtonToCase'>
                         <div className='ButtonToCaseBox'>
                             <a onClick={handlerClick} onKeyDown={handlerKeyDown}>&gt;Выполнить</a>

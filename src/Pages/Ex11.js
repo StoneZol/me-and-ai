@@ -4,33 +4,46 @@ import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 import {atomDark} from 'react-syntax-highlighter/dist/esm/styles/prism'
 import SubPageButt from './SubPageButt'
 import axios from 'axios'
-import { ex5t } from './CodeBlocks'
+import { ex11t } from './CodeBlocks'
 
-export default function Ex5() {
+export default function Ex11() {
 
-    async function getBookObj(index) {
-        try {
-            const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/`)
-            return response.data[index];
+    async function patchUser (userId, patchedData){
+        try{
+            const response = await axios.patch(
+                `https://jsonplaceholder.typicode.com/users/${userId}`, patchedData)
+            return response.data
         } catch (error) {
-            throw new Error('Error');
+            throw new Error("Error patching user")
         }
     }
+     const userPatchedData = {
+        name: "lol",
+        username: "Obemba"
+     }
+    
+     patchUser(4, userPatchedData)
+     .then(patchedUser => { 
+        console.log('User patched', patchedUser)}
+        
+        ).catch(error => {
+            console.error('Error patching user:', error.message)
+        })
 
     const [inputValue, setInputValue] = useState('')
     const [inputSave, setInputSave] = useState()
-
-    const numb = parseInt(inputValue) - 1;
 
     const handleChange = (event) => {
         setInputValue(event.target.value)
     }
 
     const handlerClick = () => {
-        setInputSave('')
-        getBookObj(numb)
-            .then(bookObj => setInputSave(bookObj))
-            .catch(error => console.log(error))
+        patchUser(inputValue, userPatchedData)
+            .then(deletedUser => {
+                setInputSave(deletedUser)
+                console.log(deletedUser)
+            })
+            .catch(error => setInputSave(`${error}, "User patched Error"`))
         }
 
     const handlerKeyDown = (event) => {
@@ -48,12 +61,12 @@ export default function Ex5() {
                         language="javascript"
                         style={atomDark}
                         showLineNumbers="showLineNumbers">
-                        {ex5t}
+                        {ex11t}
                     </SyntaxHighlighter>
                 </div>
                 <div className='Results'>
                     <div className='In'>&gt;</div>
-                    <input type='number' onChange={handleChange} onKeyDown={handlerKeyDown} placeholder='index'></input>
+                    <input type='number' onChange={handleChange} onKeyDown={handlerKeyDown} placeholder='userId'></input>
                     <div className='ButtonToCase'>
                         <div className='ButtonToCaseBox'>
                             <a onClick={handlerClick} onKeyDown={handlerKeyDown}>&gt;Выполнить</a>

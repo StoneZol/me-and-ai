@@ -123,13 +123,26 @@ async function createUser(userData) {
             throw new Error("Error create user")
         }
     }
+    const newUser = {
+        name: 'Makka',
+        userName: 'Makka666',
+        email: 'Makaka666@mail.ru'
+    };
+    createUser(newUser)
+        .then(createdUser => {
+            console.log('User created!', createdUser)
+        })
+        .catch(error => {
+            console.error('Error', error.message)
+        })
 `
 
 export const ex9t =`
 async function updateUser(userId, updatedUser) {
     try {
         const response = await axios.put(
-            \`https://jsonplaceholder.typicode.com/users/\${userId}\`, updatedUser);
+            \`https://jsonplaceholder.typicode.com/users/\${userId}\`, 
+            updatedUser);
         return response.data;
     } catch (error) {
         throw new Error("Error updating user")
@@ -160,7 +173,7 @@ async function deleteUser(userId) {
         throw new Error("Error deleting user")
     }
 }
-deleteUser(3)
+deleteUser(userId)
     .then(updatedUser => {
         console.log('User delete', updatedUser)
     })
@@ -173,7 +186,8 @@ export const ex11t = `
 async function patchUser (userId, patchedData){
     try{
         const response = await axios.patch(
-            \`https://jsonplaceholder.typicode.com/users/\${userId}\`, patchedData)
+            \`https://jsonplaceholder.typicode.com/users/\${userId}\`,
+             patchedData)
         return response.data
     } catch (error) {
         throw new Error("Error patching user")
@@ -184,7 +198,7 @@ async function patchUser (userId, patchedData){
     userName: "obama"
  }
 
- patchUser(4, userPatchedData)
+ patchUser(userId, userPatchedData)
  .then(patchedUser => { 
     console.log('User patched', patchedUser)}
     
@@ -193,7 +207,7 @@ async function patchUser (userId, patchedData){
     })
 `
 
-export const ext12t = `
+export const ex12t = `
 async function getToDos(userId, index){
     try{
         const response = await axios.get(
@@ -204,7 +218,7 @@ async function getToDos(userId, index){
     }
 }
 
-getToDos(3, 10)
+getToDos(userId, 10)
     .then(todos => console.log(todos))
     .catch(error => console.log('Error get todos:', error.messadge))
 `

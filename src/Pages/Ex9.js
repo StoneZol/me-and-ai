@@ -4,32 +4,40 @@ import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 import {atomDark} from 'react-syntax-highlighter/dist/esm/styles/prism'
 import SubPageButt from './SubPageButt'
 import axios from 'axios'
-import { ex5t } from './CodeBlocks'
+import { ex9t } from './CodeBlocks'
 
-export default function Ex5() {
+export default function Ex9() {
 
-    async function getBookObj(index) {
+    async function updateUser(userId, updatedUser) {
         try {
-            const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/`)
-            return response.data[index];
+            const response = await axios.put(
+                `https://jsonplaceholder.typicode.com/users/${userId}`, updatedUser);
+            return response.data;
         } catch (error) {
-            throw new Error('Error');
+            throw new Error("Error updating user")
         }
     }
+    const updatedUser = {
+        name: 'Makka',
+        userName: 'Makka666',
+        email: 'Makaka666@mail.ru'
+    };
 
     const [inputValue, setInputValue] = useState('')
     const [inputSave, setInputSave] = useState()
 
-    const numb = parseInt(inputValue) - 1;
+    const numb = parseInt(inputValue);
 
     const handleChange = (event) => {
         setInputValue(event.target.value)
     }
 
     const handlerClick = () => {
-        setInputSave('')
-        getBookObj(numb)
-            .then(bookObj => setInputSave(bookObj))
+        updateUser(inputValue, updatedUser)
+            .then(createdUser => {
+                setInputSave(createdUser)
+                console.log(createdUser)
+            })
             .catch(error => console.log(error))
         }
 
@@ -48,7 +56,7 @@ export default function Ex5() {
                         language="javascript"
                         style={atomDark}
                         showLineNumbers="showLineNumbers">
-                        {ex5t}
+                        {ex9t}
                     </SyntaxHighlighter>
                 </div>
                 <div className='Results'>

@@ -20,7 +20,7 @@ async function getBookID(bookId) {
 }
 
     const [inputValue, setInputValue]= useState('')
-    const[inputSave, setInputSave] = useState('')
+    const[inputSave, setInputSave] = useState()
 
     const handleChange = (event) => {
         setInputValue(event.target.value)

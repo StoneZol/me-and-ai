@@ -7,7 +7,6 @@ import axios from 'axios'
 import { ex7t } from './CodeBlocks'
 
 export default function Ex7() {
-    const codeString = ex7t;
 
 async function getUsers(index) {
     try {
@@ -54,7 +53,7 @@ async function getUsers(index) {
                         language="javascript"
                         style={atomDark}
                         showLineNumbers="showLineNumbers">
-                        {codeString}
+                        {ex7t}
                     </SyntaxHighlighter>
                 </div>
                 <div className='Results'>

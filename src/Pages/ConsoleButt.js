@@ -5,6 +5,7 @@ const ConsoleButt = () => {
   const [inputValue, setInputValue] = useState('');
   const [commands, setCommands] = useState({
     '/': '/',
+    '/help' : '/Sub/help',
     '/..': '/Sub',
     '/1': '/Sub/1',
     '/2': '/Sub/2',
